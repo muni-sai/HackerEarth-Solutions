@@ -26,6 +26,8 @@ Sample Input
 Sample Output
 99
 10
+
+
 C++ Code:
 
 #include<bits/stdc++.h>
