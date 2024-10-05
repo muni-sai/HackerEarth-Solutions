@@ -1,0 +1,84 @@
+Monk and Rotation
+Monk loves to preform different operations on arrays, and so being the principal of Hackerearth School, he assigned a task to his new student Mishki. Mishki will be provided with an integer array A of size N and an integer K , where she needs to rotate the array in the right direction by K steps and then print the resultant array. As she is new to the school, please help her to complete the task.
+
+Video approach to solve this question: here
+
+Input:
+The first line will consists of one integer T denoting the number of test cases.
+For each test case:
+1) The first line consists of two integers N and K, N being the number of elements in the array and K denotes the number of steps of rotation.
+2) The next line consists of N space separated integers , denoting the elements of the array A.
+
+Output:
+Print the required array.
+
+Constraints:
+
+
+
+
+Sample Input
+1
+5 2
+1 2 3 4 5
+Sample Output
+4 5 1 2 3
+Explanation
+Here T is 1, which means one test case.
+ denoting the number of elements in the array and 
+, denoting the number of steps of rotations.
+The initial array is: 
+
+In first rotation, 5 will come in the first position and all other elements will move to one position ahead from their current position. Now, the resultant array will be 
+
+In second rotation, 4 will come in the first position and all other elements will move to one position ahead from their current position. Now, the resultant array will be 
+
+
+Java 14 code:
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.*;
+
+class TestClass {
+    public static void main(String args[]) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int T = Integer.parseInt(br.readLine());
+        
+        for (int t = 0; t < T; t++) {
+            String[] nk = br.readLine().split(" ");
+            int N = Integer.parseInt(nk[0]);
+            int K = Integer.parseInt(nk[1]);
+            
+            String[] arrStr = br.readLine().split(" ");
+            int[] arr = new int[N];
+            for (int i = 0; i < N; i++) {
+                arr[i] = Integer.parseInt(arrStr[i]);
+            }
+            
+            // Perform rotation
+            K = K % N; // Optimize rotation steps
+            reverse(arr, 0, N - 1);
+            reverse(arr, 0, K - 1);
+            reverse(arr, K, N - 1);
+            
+            // Print the rotated array
+            for (int i = 0; i < N; i++) {
+                System.out.print(arr[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+    
+    // Helper method to reverse a portion of the array
+    private static void reverse(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
